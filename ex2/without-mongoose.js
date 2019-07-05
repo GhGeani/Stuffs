@@ -15,7 +15,9 @@
  // Connect to the local db
  const url = 'mongodb://localhost:27017/';
  const config = require('./config');
- mongodb.connect(url, { useNewUrlParser: true }, function (err, conn) {
+ mongodb.connect(url, {
+   useNewUrlParser: true
+ }, function (err, conn) {
    if (err) return err;
    let db = conn.db(config.db);
    db.collection(config.collection, (err, collection) => {
@@ -57,21 +59,21 @@
      })
 
      lineReader.on('pause', () => {
-        console.log('Line paused.')
-        console.log('Sending to Database...')
-        if (buffer.length === 0) {
-          console.log('Empty buffer received');
-          return;
-        }
-        collection.insertMany(Object.assign([], buffer), function (err, res) {
-          if (err) {
-            return console.error(err);
-          }
-          console.log(bufferLimit + ' documents inserted.');
-        });
-        console.log('Buffer cleaned');
-        buffer = [];
-        lineReader.resume();
+       console.log('Line paused.')
+       console.log('Sending to Database...')
+       if (buffer.length === 0) {
+         console.log('Empty buffer received');
+         return;
+       }
+       collection.insertMany(Object.assign([], buffer), function (err, res) {
+         if (err) {
+           return console.error(err);
+         }
+         console.log(bufferLimit + ' documents inserted.');
+       });
+       console.log('Buffer cleaned');
+       buffer = [];
+       lineReader.resume();
      })
 
      lineReader.on('close', () => {
@@ -85,7 +87,7 @@
            conn.close();
          })
        } else {
-        conn.close();
+         conn.close();
        }
        return console.log('Stream closed.')
      })

@@ -1,18 +1,25 @@
 const router = require('express').Router();
 const ItemController = require('../controllers/item');
+const itemModel = require('../model/item');
 
-let itemController = new ItemController();
+let itemController = new ItemController(itemModel);
 
 router.get('/', (req, res) => {
-  res.status(200).send(itemController.getItems());
+  let listofItems = itemController.getItems();
+  console.log(listofItems);
+  
+  res.status(200).send(listofItems);
 })
-router.post('/create', (req, res) => {
+
+router.post('/create/:id', (req, res) => {
   res.status(201).send(itemController.createItem());
 })
-router.put('/update', (req, res) => {
+
+router.put('/update/:id', (req, res) => {
   res.status(201).send(itemController.updateItem());
 })
-router.delete('/delete', (req, res) => {
+
+router.delete('/delete/:id', (req, res) => {
   res.status(200).send(itemController.deleteItem());
 })
 

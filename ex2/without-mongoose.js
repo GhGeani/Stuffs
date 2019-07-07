@@ -5,7 +5,7 @@
 
  // Code
 
- let path = '../../seattle-checkouts-by-title/checkouts-by-title.csv';
+ let path = '../../checkouts-by-title.csv';
  let count = 0; // count lines
  let firstLane = []; // save first lane here
  let buffer = [];

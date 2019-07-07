@@ -4,7 +4,7 @@ module.exports = {
   },
 
   database: {
-    database: 'mydb',
+    dbname: 'mydb',
     collection: 'items'
   }
 }

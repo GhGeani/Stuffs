@@ -1,21 +1,25 @@
 class ItemController {
-  constructor() {
-
+  constructor(itemModel) {
+    this.items = itemModel;
   }
 
   getItems() {
     console.log('Get Items');
+    this.items.find({}, (err, result)=>{
+      if(err) return err;
+      return result
+    }).limit(5);
   }
-
-  createItem() {
+  
+  createItem(item) {
     console.log('Create Item');
   }
 
-  updateItem() {
+  updateItem(item, id) {
     console.log('Update Item');
   }
 
-  deleteItem() {
+  deleteItem(id) {
     console.log('Delete Item');
   }
 

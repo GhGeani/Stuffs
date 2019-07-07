@@ -2,7 +2,7 @@ class Server {
   constructor() {
     this.requires();
     this.app = this.express();
-
+    this.connectToDb();
     this.routes();
   }
 
@@ -10,6 +10,7 @@ class Server {
     this.express = require('express');
     this.configs = require('./config/configs');
     this.router = require('../routes/item');
+    this.connectToDb = require('./connect');
   }
 
   routes() {

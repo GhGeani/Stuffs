@@ -21,7 +21,11 @@ router.post('/', (req, res) => {
 })
 
 router.put('/update/:id', (req, res) => {
-  console.log(req.body);
+  // console.log(req.body);
+  itemController.updateItem(req.body, req.params, function(err, res) {
+    if(err) return res.status(500).send(JSON.stringify(err));
+    return res.status(201).send(res);
+  })
 })
 
 router.delete('/delete/:id', (req, res) => {

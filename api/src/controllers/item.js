@@ -28,9 +28,11 @@ class ItemController {
 
   updateItem(item, id, done) {
     console.log('Update Item');
-
-    console.log(req.body);
-
+    console.log(id);
+    this.items.fineOneAndUpdate({_id: id }, item, function(err){
+      if(err) return done(err);
+      return done(null, 'Item Updated')
+    })
   }
 
   deleteItem(id, done) {

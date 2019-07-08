@@ -24,22 +24,30 @@ module.exports = mongoose.model('item', ItemSchema);
   let count = 0;
   let schema = {};
   let lineReader = readline.createInterface({
-    input: fs.createReadStream('../../../../checkouts-by-title.csv', 'UTF8')
+    input: fs.createReadStream('../../../../seattle-checkouts-by-title/checkouts-by-title.csv', 'UTF8')
   });
   lineReader.on('line', function (data) {
+    
     let aux = data.replace(/(['"])/g, "");
     let words = aux.split(',');
-    if (count == 0) {
+    if (count === 1) {
       count++;
       for(let word in words) {
-        let type = mongoose.
+        let type = typeof words[word];
+        console.log(words[word]);
+        if(parseInt(words[word]) === NaN) {
+          type = 
+        }
         console.log(type);
         // schema[words[word]] = 
       }
-      console.log(schema);
+      //console.log(schema);
       return schema;
     } else {
-      return lineReader.close();
+      if(count > 1) {
+        return lineReader.close();
+      }
     }
+    count++;
   })
 })() */

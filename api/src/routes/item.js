@@ -4,19 +4,24 @@ const itemModel = require('../model/item');
 
 let itemController = new ItemController(itemModel);
 
-router.get('/', (req, res) => {
-  let listofItems = itemController.getItems();
-  console.log(listofItems);
-  
-  res.status(200).send(listofItems);
+router.get('/:page', (req, res) => {
+  itemController.getItems(req.params, function(err, listOfItems) {
+    if(err) return res.status(500).send(JSON.stringify(err));
+    res.status(200).send(listOfItems);
+  });
 })
 
-router.post('/create/:id', (req, res) => {
-  res.status(201).send(itemController.createItem());
+router.post('/', (req, res) => {
+  let item = req.body;
+
+  itemController.createItem(item, function(err, result){
+    if(err) return res.status(500).send(JSON.stringify(err));
+    res.status(201).send(result);
+  })
 })
 
 router.put('/update/:id', (req, res) => {
-  res.status(201).send(itemController.updateItem());
+  console.log(req.body);
 })
 
 router.delete('/delete/:id', (req, res) => {

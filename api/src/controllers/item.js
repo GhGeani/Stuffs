@@ -3,23 +3,37 @@ class ItemController {
     this.items = itemModel;
   }
 
-  getItems() {
-    console.log('Get Items');
+  getItems(pages, done) {
+    console.log('Get Items - page=' + pages['page']);
     this.items.find({}, (err, result)=>{
-      if(err) return err;
-      return result
-    }).limit(5);
+      if(err) return done(err);
+      return done(null, result)
+    }).skip(2*pages['page']).limit(2)
   }
+
+  // async getItems() {
+  //   console.log('Get Items');
+  //   const resp = await this.items.find({}).limit(5);
+  //   return resp;
+  // }
   
-  createItem(item) {
+  createItem(item, done) {
     console.log('Create Item');
+    new this.items(item).save(function(err){
+      if(err) return done(err);
+      return done(null, 'Item created!')
+    })
+
   }
 
-  updateItem(item, id) {
+  updateItem(item, id, done) {
     console.log('Update Item');
+
+    console.log(req.body);
+
   }
 
-  deleteItem(id) {
+  deleteItem(id, done) {
     console.log('Delete Item');
   }
 

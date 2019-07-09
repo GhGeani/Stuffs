@@ -29,14 +29,28 @@ class ItemController {
   updateItem(item, id, done) {
     console.log('Update Item');
     console.log(id);
-    this.items.fineOneAndUpdate({_id: id }, item, function(err){
+    /* this.items.findById(id, function(err, res){
       if(err) return done(err);
-      return done(null, 'Item Updated')
+      res = item;
+      //console.log(res)
+      res.save(function(err){
+        return done(err)
+      })
+      return done(null, `Item with id ${id} updated!`);
+    }) */
+
+    this.items.findByIdAndUpdate(id, item, function(err, res) {
+      if(err) return done(err);
+      return done(null, `Item with id ${id} updated.`);
     })
   }
 
   deleteItem(id, done) {
     console.log('Delete Item');
+    this.items.findByIdAndRemove(id, function(err){
+      if(err) return done(err);
+      return done(null, `Item with id ${id} deleted.`);
+    })
   }
 
 }

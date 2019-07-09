@@ -22,14 +22,18 @@ router.post('/', (req, res) => {
 
 router.put('/update/:id', (req, res) => {
   // console.log(req.body);
-  itemController.updateItem(req.body, req.params, function(err, res) {
+  // console.log(req.params['id']);
+  itemController.updateItem(req.body, req.params['id'], function(err, result) {
     if(err) return res.status(500).send(JSON.stringify(err));
-    return res.status(201).send(res);
+    return res.status(201).send(result);
   })
 })
 
 router.delete('/delete/:id', (req, res) => {
-  res.status(200).send(itemController.deleteItem());
+  itemController.deleteItem(req.params['id'], function(err, result){
+    if(err) return res.status(500).send(JSON.stringify(err));
+    return res.status(200).send(result);
+  })
 })
 
 module.exports = router;

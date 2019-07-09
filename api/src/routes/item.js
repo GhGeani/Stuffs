@@ -11,6 +11,20 @@ router.get('/:page', (req, res) => {
   });
 })
 
+router.get('/search/:field/:id/:page', (req, res) => {
+  let field = req.params['field'];
+  let id = req.params['id'];
+  let page = req.params['page'];
+  console.log(req.params);
+
+  itemController.getByField(field, id, page, function(err, result){
+    if(err) return res.status(500).send(JSON.stringify(err));
+    return res.status(200).send(result);
+  })
+})
+
+
+
 router.post('/', (req, res) => {
   let item = req.body;
 

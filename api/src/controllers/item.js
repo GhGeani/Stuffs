@@ -19,14 +19,25 @@ class ItemController {
   // }
 
   getByField(field, value, page, done) {
-    this.items.find({
-      [field]: `${value}`
-    }, function (err, result) {
-      if (err) return done(err);
-      return done(null, result);
-    }).skip(this.limit * page).limit(this.limit)
-  }
+    if (value !== null) {
+      // return searchOneField(field, value, page, done);
+      this.items.find({
+          [field]: `${value}`
+        })
+        .skip(this.limit * page)
+        .limit(this.limit)
+        .exec(done)
 
+    } else {
+      // return searchManyFields(field, page, done);
+      this.items.find(
+          field
+        )
+        .skip(this.limit * page)
+        .limit(this.limit)
+        .exec(done)
+    }
+  }
 
   createItem(item, done) {
     console.log('Create Item');
@@ -40,15 +51,6 @@ class ItemController {
   updateItem(item, id, done) {
     console.log('Update Item');
     console.log(id);
-    /* this.items.findById(id, function(err, res){
-      if(err) return done(err);
-      res = item;
-      //console.log(res)
-      res.save(function(err){
-        return done(err)
-      })
-      return done(null, `Item with id ${id} updated!`);
-    }) */
 
     this.items.findByIdAndUpdate(id, item, function (err, res) {
       if (err) return done(err);
@@ -64,6 +66,24 @@ class ItemController {
     })
   }
 
+  /* searchOneField(field, value, page, done) {
+    this.items.find({
+        [field]: `${value}`
+      })
+      .skip(this.limit * page)
+      .limit(this.limit)
+      .exec(done)
+  }
+
+  searchManyFields(field, page, done) {
+    this.items.find(
+        field
+      )
+      .skip(this.limit * page)
+      .limit(this.limit)
+      .exec(done)
+  } */
 }
+
 
 module.exports = ItemController

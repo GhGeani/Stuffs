@@ -12,6 +12,7 @@ const lineReader = readline.createInterface({
 
 lineReader.on('line', function(data) {
     //console.log('Line from file', data);
+    console.log(data);
     let aux = data.replace(/(['"])/g, "");
     let words = aux.split(',');
     console.log(words);

@@ -10,7 +10,7 @@
  let firstLane = []; // save first lane here
  let buffer = [];
  let bufferLimit = 25000;
- let limit = 31000000; // number of docs
+ let limit = 1000000; // number of docs
 
  // Connect to the local db
  const url = 'mongodb://localhost:27017/';

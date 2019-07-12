@@ -8,21 +8,15 @@ const ItemSchema = new Schema({
   CheckoutYear: String,
   CheckoutMonth: String,
   Checkouts: String,
-  Title: {
-    type: [String],
-    index: true
-  },
-  Creator: {
-    type: [String],
-    index: true
-  },
+  Title: String,
+  Creator: String,
   Subjects: String,
-  Publisher: {
-    type: [String],
-    index: true
-  },
+  Publisher: String,
   PublicationYear: String,
 });
 
+ItemSchema.index({
+  Creator: 'text'
+})
 
 module.exports = mongoose.model('item', ItemSchema);

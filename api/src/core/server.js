@@ -1,28 +1,26 @@
+const express = require('express');
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const config = require('./config/configs');
+const router = require('../routes/item');
+const connectToDb = require('./connect');
+
 class Server {
   constructor() {
-    this.requires();
-    this.app = this.express();
-    this.app.use(this.bodyParser.urlencoded({ extended: false }));
-    this.app.use(this.bodyParser.json());
-    this.connectToDb();
+    this.app = express();
+    this.app.use(bodyParser.urlencoded({ extended: false }));
+    this.app.use(bodyParser.json());
+    connectToDb(mongoose, config);
     this.routes();
   }
 
-  requires() {
-    this.express = require('express');
-    this.bodyParser = require('body-parser');
-    this.configs = require('./config/configs');
-    this.router = require('../routes/item');
-    this.connectToDb = require('./connect');
-  }
-
   routes() {
-    this.app.use('/', this.router);
+    this.app.use('/', router);
   }
 
   start() {
-    this.app.listen(this.configs.server.port, () => {
-      console.log(`Server on, port: ${this.configs.server.port}`);
+    this.app.listen(config.server.port, () => {
+      console.log(`Server on, port: ${config.server.port}`);
     })
   }
 }

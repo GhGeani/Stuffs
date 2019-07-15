@@ -4,12 +4,12 @@ class ItemController {
     this.limit = 20;
   }
 
-  getItems(pages, done) {
-    console.log('Get Items - page=' + pages['page']);
+  getItems(page, done) {
+    console.log('Get Items - page=' + page);
     this.items.find({}, (err, result) => {
       if (err) return done(err);
       return done(null, result)
-    }).skip(this.limit * pages['page']).limit(this.limit)
+    }).skip(this.limit * page).limit(this.limit)
   }
 
   // async getItems() {

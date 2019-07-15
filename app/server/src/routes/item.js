@@ -4,8 +4,9 @@ const itemModel = require('../model/item');
 
 let itemController = new ItemController(itemModel);
 
-router.get('/:page', (req, res) => {
-  itemController.getItems(req.params, function (err, listOfItems) {
+router.get('/items', (req, res) => {
+  let page = req.query['page'];
+  itemController.getItems(page, function (err, listOfItems) {
     if (err) return res.status(500).send(JSON.stringify(err));
     res.status(200).send(listOfItems);
   });

@@ -44,7 +44,7 @@ router.get('/items/search', (req, res) => {
   }
 })
 
-router.post('/', (req, res) => {
+router.post('/item/create', (req, res) => {
   let item = req.body;
 
   itemController.createItem(item, function (err, result) {

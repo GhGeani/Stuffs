@@ -5,6 +5,7 @@ const config = require('./config/configs');
 const router = require('../routes/item');
 const connectToDb = require('./connect');
 const cors = require('cors');
+const path = require('path');
 
 class Server {
   constructor() {
@@ -18,7 +19,19 @@ class Server {
   }
 
   routes() {
-    this.app.use('/', router);
+    this.app.use(router);
+    this.app.get('/app',  (req, res) => {
+      res.sendFile(path.join(__dirname, '../../../client/index.html'));
+    });
+    // serves files from node_modules.
+    this.app.use(express.static(path.join(__dirname, '../../../../node_modules'), {
+      maxAge: 24 * 60 * 60 * 1000
+    }));
+
+    // serve static files from client.
+    this.app.use(express.static(path.join(__dirname, '../../../client/'), {
+      maxAge: 24 * 60 * 60 * 1000
+    }));
   }
 
   start() {

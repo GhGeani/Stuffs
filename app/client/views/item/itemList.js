@@ -5,7 +5,7 @@ Vue.component('item', {
   ],
 
   template: `
-    <div class = 'card border border-dark m-3' style="width: 20rem;">
+    <div class = 'item card m-3' style="width: 20rem;">
       <p class = 'text-muted text-center'> {{ title }} </p>
       <small><strong>by {{ creator }}</strong></small>
       <hr>
@@ -15,7 +15,7 @@ Vue.component('item', {
 })
 
 const itemList = Vue.component('item-list', {
-  mounted: function() {
+  created: function() {
     fetch('http://localhost:3000/items/?page=1')
       .then((res) => { 
         return res.json() 
@@ -33,8 +33,10 @@ const itemList = Vue.component('item-list', {
   },
 
   template: `
-    <article class = 'row border justify-content-center'>
-      <item class = 'col-3' v-for='item in items' :creator='item.Creator' :title='item.Title' :subjects='item.Subjects'></item>
+    <article class = 'container col-10'>
+      <div class = 'row justify-content-center content'>
+        <item class = 'col-md-3' v-for='item in items' :creator='item.Creator' :title='item.Title' :subjects='item.Subjects'></item>
+      </div>
     </article>
   `
 })

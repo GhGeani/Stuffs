@@ -1,0 +1,33 @@
+html{
+  height: 100%;
+}
+
+#app {
+  height: 100%;
+  background-image: linear-gradient(to bottom, rgba(218, 211, 211, 0.88), rgba(250, 232, 242, 0.808));
+}
+
+.item {
+  border: 1px solid black;
+}
+
+.item:hover {
+  transition: 0.1s;
+  cursor: pointer;
+  opacity: 0.8;
+  box-shadow: 2px 4px lightgrey;
+  border-radius: 10px;
+  border-width: 0px;
+}
+
+.content {
+  border-width: 10px;
+  border-style: solid;
+  border-image: linear-gradient(
+    to bottom,
+    #343A40,
+    rgba(218, 170, 188, 0.4),
+    transparent 35%
+
+  )1 100%;
+}

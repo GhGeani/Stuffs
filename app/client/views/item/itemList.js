@@ -1,11 +1,12 @@
  // Template an elem.
 Vue.component('item', {
   props: [
-    'creator', 'title', 'subjects'
+    'id', 'creator', 'title', 'subjects'
   ],
 
   template: `
     <div class = 'col-md-3 item card m-3' style="width: 20rem;">
+      <small class ='card-header text-muted'>{{ id }}</small>
       <p class = 'text-muted text-center'> {{ title }} </p>
       <small><strong>by {{ creator }}</strong></small>
       <hr>
@@ -35,7 +36,7 @@ const itemList = Vue.component('item-list', {
   template: `
     <article class = 'container'>
       <div class = 'row justify-content-center content'>
-          <item v-for='item in items' :creator='item.Creator' :title='item.Title' :subjects='item.Subjects'></item>
+          <item v-for='item in items' :creator='item.Creator' :title='item.Title' :subjects='item.Subjects' :id='item._id' v-bind:key="item._id"></item>
       </div>
     </article>
   `

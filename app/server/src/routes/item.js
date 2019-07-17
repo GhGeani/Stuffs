@@ -53,7 +53,7 @@ router.post('/item/create', (req, res) => {
   })
 })
 
-router.put('/update/:id', (req, res) => {
+router.put('item/update/:id', (req, res) => {
   // console.log(req.body);
   // console.log(req.params['id']);
   itemController.updateItem(req.body, req.params['id'], function (err, result) {
@@ -62,7 +62,7 @@ router.put('/update/:id', (req, res) => {
   })
 })
 
-router.delete('/delete/:id', (req, res) => {
+router.delete('item/delete/:id', (req, res) => {
   itemController.deleteItem(req.params['id'], function (err, result) {
     if (err) return res.status(500).send(JSON.stringify(err));
     return res.status(200).send(result);

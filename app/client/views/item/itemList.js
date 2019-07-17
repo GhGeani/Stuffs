@@ -5,7 +5,7 @@ Vue.component('item', {
   ],
 
   template: `
-    <div class = 'item card m-3' style="width: 20rem;">
+    <div class = 'col-md-3 item card m-3' style="width: 20rem;">
       <p class = 'text-muted text-center'> {{ title }} </p>
       <small><strong>by {{ creator }}</strong></small>
       <hr>
@@ -33,9 +33,9 @@ const itemList = Vue.component('item-list', {
   },
 
   template: `
-    <article class = 'container col-10'>
+    <article class = 'container'>
       <div class = 'row justify-content-center content'>
-        <item class = 'col-md-3' v-for='item in items' :creator='item.Creator' :title='item.Title' :subjects='item.Subjects'></item>
+          <item v-for='item in items' :creator='item.Creator' :title='item.Title' :subjects='item.Subjects'></item>
       </div>
     </article>
   `

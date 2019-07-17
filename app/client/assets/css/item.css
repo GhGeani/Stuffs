@@ -1,9 +1,9 @@
-html{
-  height: 100%;
+html, body, #app {
+  margin: 0;
+  height: auto;
 }
 
 #app {
-  height: 100%;
   background-image: linear-gradient(to bottom, rgba(218, 211, 211, 0.88), rgba(250, 232, 242, 0.808));
 }
 

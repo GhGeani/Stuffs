@@ -8,12 +8,12 @@ html, body, #app {
 }
 
 .item {
-  border: 1px solid black;
+  border: 1px solid lightgray;
+  opacity: 0.9;
 }
 
 .item:hover {
   transition: 0.1s;
-  cursor: pointer;
   opacity: 0.8;
   box-shadow: 2px 4px lightgrey;
   border-radius: 10px;
@@ -31,3 +31,28 @@ html, body, #app {
 
   )1 100%;
 }
+
+.btn-get-more {
+
+}
+
+.btn-get-more:hover {
+  color: blue;
+  background-color: lightgrey;
+}
+
+
+.btn-del:hover {
+  color: red;
+  background-color: lightgrey;
+}
+
+.btn-edit:hover {
+  color: yellow;
+  background-color: lightgrey;
+}
+
+
+
+
+

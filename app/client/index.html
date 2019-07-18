@@ -5,33 +5,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
-
+  <title>Aplicatie</title>
   <!-- Bootstrap -->
   <!-- <lin rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
   <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./assets/css/item.css">
-
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="/assets/css/item.css">
 </head>
-
 <body>
-  
   <div id="app">
     <nav-bar></nav-bar>
     <router-view></router-view>
   </div>
 
-
   <!-- development version, includes helpful console warnings -->
-  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-  <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+  <script src="/vue/dist/vue.js"></script>
+  <script src="/vue-router/dist/vue-router.js"></script>
+  <script src="/axios/dist/axios.min.js"></script>
 
-  <script src="./components/navbar.js"></script>
+  <script src="/components/navbar.js"></script>
   <script src="/views/item/createItem.js"></script>
-  <script src="./views/item/itemList.js"></script>
-  <script src="./routes.js"></script>
-  <script src="./main.js"></script>
+  <script src="/views/item/item.js"></script>
+  <script src="/views/item/itemList.js"></script>
+  <script src="/views/item/getItem.js"></script>
+  <script src="/routes.js"></script>
+  <script src="/main.js"></script>
 </body>
-
 </html>

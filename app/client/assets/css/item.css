@@ -14,10 +14,7 @@ html, body, #app {
 
 .item:hover {
   transition: 0.1s;
-  opacity: 0.8;
-  box-shadow: 2px 4px lightgrey;
-  border-radius: 10px;
-  border-width: 0px;
+  opacity: 0.7;
 }
 
 .content {
@@ -32,15 +29,10 @@ html, body, #app {
   )1 100%;
 }
 
-.btn-get-more {
-
-}
-
 .btn-get-more:hover {
   color: blue;
   background-color: lightgrey;
 }
-
 
 .btn-del:hover {
   color: red;

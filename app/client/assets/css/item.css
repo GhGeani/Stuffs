@@ -4,7 +4,7 @@ html, body, #app {
 }
 
 #app {
-  background-image: linear-gradient(to bottom, rgba(218, 211, 211, 0.88), rgba(250, 232, 242, 0.808));
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.38), rgba(255, 255, 255, 0.808));
 }
 
 .item {

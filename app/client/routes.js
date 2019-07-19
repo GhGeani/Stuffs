@@ -1,7 +1,7 @@
 const routes = [
-  { path: '/', component: itemList },
-  { path: '/item/create', component: createItem },
-  { path: '/item/show', component: getItem},
+  { path: '/items', component: itemList },
+  { path: '/item', component: createItem },
+  { path: '/item/:id', component: getItem},
 ];
 
 const router = new VueRouter({

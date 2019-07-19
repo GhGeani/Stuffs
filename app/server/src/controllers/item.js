@@ -18,6 +18,13 @@ class ItemController {
   //   return resp;
   // }
 
+  getItem(id, done) {
+    this.items.findById(id, function(err, result){
+      if(err) return done(err);
+      return done(null, result);
+    })
+  }
+
   getByField(field, value, page, done) {
     if (value !== null) {
       // return searchOneField(field, value, page, done);

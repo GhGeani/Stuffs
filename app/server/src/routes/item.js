@@ -12,6 +12,13 @@ router.get('/items', (req, res) => {
   });
 })
 
+router.get('/item/:id', (req,res) => {
+  itemController.getItem(req.params.id, (err, result) => {
+    if(err) return res.status(500).send(JSON.stringify(err))
+    return res.status(200).send(result);
+  })
+})
+
 router.get('/items/search', (req, res) => {
   let field = req.query['field'];
   let values = req.query['value'].split(',');
@@ -44,7 +51,7 @@ router.get('/items/search', (req, res) => {
   }
 })
 
-router.post('/item/create', (req, res) => {
+router.post('/item', (req, res) => {
   let item = req.body;
 
   itemController.createItem(item, function (err, result) {
@@ -53,7 +60,7 @@ router.post('/item/create', (req, res) => {
   })
 })
 
-router.put('item/update/:id', (req, res) => {
+router.put('item/:id', (req, res) => {
   // console.log(req.body);
   // console.log(req.params['id']);
   itemController.updateItem(req.body, req.params['id'], function (err, result) {

@@ -7,7 +7,7 @@ Vue.component('item', {
   <div class = "item card col-md-5 col-lg-3 m-3">
     <div class = 'card-header'>
       <p class = 'text-muted text-center'> {{ title }} </p>
-      <small><strong>by <u>{{ creator }} </u></strong></small>
+      <small><strong>by <u>{{ creator }}</u></strong></small>
     </div>
     <p class = 'card-body text-truncate'> {{ subjects }} </p>
     <router-link class ='btn btn-sm btn-get-more' :to="{ path: 'item/' + id , query: { edit: 'false' } }">Get more</router-link>

@@ -9,7 +9,7 @@ const filterComp = Vue.component('filter-comp', {
           <ul class="list-group">
             <li class="list-group-item">
               <span>Name</span>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control form-control-sm" />
             </li>
           </ul>
         </div>

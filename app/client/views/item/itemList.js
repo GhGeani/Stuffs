@@ -24,9 +24,18 @@ const itemList = Vue.component('item-list', {
   },
   template: `
     <article class = 'container'>
-      <div class = 'row justify-content-center content'>
-        <item v-for='item in items' :creator='item.Creator' :title='item.Title' :subjects='item.Subjects' :id='item._id' v-bind:key="item._id"></item>
+      <div class="row">
+        <div class="col col-md-3">
+          <filter-comp></filter-comp>
+        </div>
+        <div class="col col-md-9">
+          <search></search>
+          <div class = 'row justify-content-center content'>
+            <item v-for='item in items' :creator='item.Creator' :title='item.Title' :subjects='item.Subjects' :id='item._id' v-bind:key="item._id"></item>
+          </div>
+        </div>
       </div>
     </article>
+      
   `
 })

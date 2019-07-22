@@ -1,0 +1,13 @@
+.filter {
+  border: 1px solid lightgray;
+}
+
+.btn-search {
+  border-top: 1px solid lightgray;
+  border-radius: 1px;
+}
+.btn-search:hover {
+  background-color: lightgrey;
+  border: none;
+  color: blue;
+}

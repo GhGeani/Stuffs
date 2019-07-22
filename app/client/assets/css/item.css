@@ -44,7 +44,11 @@ html, body, #app {
   background-color: lightgrey;
 }
 
+.confirm-delete {
+  background-color: #E2574C;
+  color: white;
 
+}
 
 
 

@@ -23,7 +23,24 @@ const getItem = Vue.component('getItem',{
     }
   },
   methods: {
+    updateItem() {
+      fetch(`/item/${this.$route.params.id}`, {
+        method: 'PUT',
+        body: JSON.stringify(this.item),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        return response.text();
+      })
+      .then(response => {
+        console.log(response);
+      })
 
+      this.edit = false;
+      this.$router.push({ path: '' + this.item._id, query: { edit: 'false' } });
+    }
   },
   watch: {
     '$route.query.edit': function(editVal) {
@@ -31,17 +48,6 @@ const getItem = Vue.component('getItem',{
       else this.edit = 'false'
     }
   },
- /*  beforeRouteUpdate: function(to, from, next) {
-
-    console.log('Am schimbat ruta!');
-    if(this.edit == 'false') {
-      this.edit = 'true';
-    } else {
-      this.edit = 'false'
-    }
-    console.log('Se editeaza:' + this.edit);
-    next();
-  }, */
   template: 
   `
   <div class = 'row justify-content-center m-3'>
@@ -107,10 +113,10 @@ const getItem = Vue.component('getItem',{
           </div>
         
       </div>
-      <div class = 'row'>
+      <div class = 'row float-right mt-1'>
       <router-link class ='btn btn-sm btn-get-more' :to="{ path: '' + item._id, query: { edit: 'true' } }" v-if="edit == 'false'">Edit</router-link>
-      <router-link class ='btn btn-sm btn-edit' :to="{ path: '' + item._id, query: { edit: 'false' } }" v-if="edit == 'true'">Save Changes</router-link>
-      <router-link class ='btn btn-sm btn-edit float-right' :to="{ path: '' + item._id, query: { edit: 'false' } }" v-if="edit == 'true'">Cancel</router-link>
+      <button class ='btn btn-sm btn-edit' v-if="edit == 'true'" @click='updateItem'>Save Changes</button>
+      <router-link class ='btn btn-sm btn-del float-right' :to="{ path: '' + item._id, query: { edit: 'false' } }" v-if="edit == 'true'">Cancel</router-link>
       </div>
     </div>
   </div>

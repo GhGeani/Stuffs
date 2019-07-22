@@ -60,7 +60,7 @@ router.post('/item', (req, res) => {
   })
 })
 
-router.put('item/:id', (req, res) => {
+router.put('/item/:id', (req, res) => {
   // console.log(req.body);
   // console.log(req.params['id']);
   itemController.updateItem(req.body, req.params['id'], function (err, result) {

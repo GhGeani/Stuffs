@@ -4,7 +4,7 @@ Vue.component('item', {
   ],
 
   template: `
-  <div class="col-md-6 col-lg-6">
+  <div class="col col-sm-12 col-md-6 col-lg-4">
     <div class = "item card m-1">
       <div class = 'card-header'>
         <p class = 'text-muted text-center'> {{ title }} </p>

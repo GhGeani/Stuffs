@@ -1,4 +1,4 @@
-Vue.controller('publisher', 
+Vue.component('publisher', 
 {
   props: [],
 

@@ -6,22 +6,48 @@ class AuthorController {
 
   getAll(page, done){
     //console.log('Get authors');
-
     this.authors.aggregate([
-    {
-      $group: {
-        _id: "$Creator",
+     /*  {
+        $facet: 
+        {
+          "" 
+        }
       },
-
-    }
+      { 
+        $skip: this.limit * page 
+      },
+      {
+        $limit: this.limit,
+      }   */    
     ])
-    .skip(this.limit * page)
-    .limit(this.limit)
     .exec(done);
   }
 
-  getOne(){
-    console.log('Get author');
+  getOne(name, page, done){
+    this.authors.aggregate(
+      [
+        { 
+          $match: 
+          { 
+            Creator: name
+          },
+        },
+        {
+          $project: 
+          {
+            _id: 1,
+            Title: 1,
+          }
+        },
+        {
+          $skip: this.limit * page
+        },
+        {
+          $limit: this.limit
+        },
+      ]
+    )
+    .exec(done)
   }
 
 }

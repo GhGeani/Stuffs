@@ -50,5 +50,11 @@ html, body, #app {
 
 }
 
+.item:nth-child(odd) {
+  background-color: azure;
+}
 
+.item:nth-child(even) {
+  background-color: lightslategray;
+}
 

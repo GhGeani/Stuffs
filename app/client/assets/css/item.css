@@ -23,8 +23,8 @@ html, body, #app {
   border-image: linear-gradient(
     to bottom,
     #343A40,
-    rgba(218, 170, 188, 0.4),
-    transparent 35%
+    rgba(0, 0, 0, 0.4),
+    transparent 89%
 
   )1 100%;
 }

@@ -2,7 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const config = require('./config/configs');
-const router = require('../routes/item');
+const itemRoutes = require('../routes/item');
+const authorRoutes = require('../routes/author');
+const publisherRoutes = require('../routes/publisher');
 const connectToDb = require('./connect');
 const cors = require('cors');
 const path = require('path');
@@ -10,16 +12,15 @@ const path = require('path');
 class Server {
   constructor() {
     this.app = express();
-    
-    this.app.use(cors());
-    this.app.use(bodyParser.urlencoded({ extended: false }));
-    this.app.use(bodyParser.json());
     connectToDb(mongoose, config);
+    this.middlewares();
     this.routes();
   }
 
   routes() {
-    this.app.use(router);
+    this.app.use(itemRoutes);
+    this.app.use(authorRoutes);
+    this.app.use(publisherRoutes);
     this.app.get('/app',  (req, res) => {
       res.sendFile(path.join(__dirname, '../../../client/index.html'));
     });
@@ -32,6 +33,11 @@ class Server {
     this.app.use(express.static(path.join(__dirname, '../../../client/'), {
       maxAge: 24 * 60 * 60 * 1000
     }));
+  }
+  middlewares() {
+    this.app.use(cors());
+    this.app.use(bodyParser.urlencoded({ extended: false }));
+    this.app.use(bodyParser.json());
   }
 
   start() {

@@ -7,7 +7,9 @@ const itemList = Vue.component('item-list', {
       })
       this.items.splice(index, 1);
     })
-    fetch('/items/?page=1')
+
+    let page = this.$route.query.page;
+    fetch(`/items/?page=${page}`)
       .then((res) => { 
         return res.json() 
       })
@@ -26,10 +28,10 @@ const itemList = Vue.component('item-list', {
     <article class = 'container'>
       <div class="row">
        <!--  <div class="col col-md-3">
-          <filter-comp></filter-comp>
+          <filter-comp ></filter-comp>
         </div> -->
         <div class="col">
-          <search></search>
+          <search :path="'/items'" :currPage="this.$route.query.page" :query="'Title'" :url="'/items/search'"></search>
           <div class = 'row justify-content-around  content'>
             <item v-for='item in items' :creator='item.Creator' :title='item.Title' :subjects='item.Subjects' :id='item._id' v-bind:key="item._id"></item>
           </div>

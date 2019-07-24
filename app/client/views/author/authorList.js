@@ -1,11 +1,14 @@
 const authorList = Vue.component('author-list', {
   mounted: function() {
-    fetch('/authors?page=1')
+    let page =  this.$route.query.page;
+    console.log(page);
+    fetch(`/authors?page=${page}`)
     .then(response => {
       return response.json();
     })
     .then(response => {
       this.authors = response;
+      console.log(this.authors);
     })
   },
   data: function() {
@@ -14,8 +17,10 @@ const authorList = Vue.component('author-list', {
     }
   },
   template: `
-    <div class="list-group">
-      <author v-for="author in authors" :name="author._id"></author>
+    <div class="container">
+      <div class="list-group">
+        <author v-for="author in authors" :name="author._id" :key="author._id"></author>
+      </div>
     </div>
   `
 })

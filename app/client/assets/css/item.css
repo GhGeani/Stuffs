@@ -17,7 +17,7 @@ html, body, #app {
   opacity: 0.7;
 }
 
-.content {
+/* .content {
   border-width: 10px;
   border-style: solid;
   border-image: linear-gradient(
@@ -27,7 +27,7 @@ html, body, #app {
     transparent 89%
 
   )1 100%;
-}
+} */
 
 .btn-get-more:hover {
   color: blue;

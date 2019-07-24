@@ -15,9 +15,7 @@ router.get('/authors', (req, res) => {
 
 router.get('/author/:name', (req, res) => {
   let name = req.params.name;
-  let page = req.query.page
-  console.log(req.query.page);
-  authorController.getOne(name, page, (err, result) => {
+  authorController.getOne(name, (err, result) => {
     if(err) return res.status(500).send(err);
     return res.status(200).send(result);
   });

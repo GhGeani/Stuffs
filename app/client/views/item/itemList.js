@@ -24,6 +24,18 @@ const itemList = Vue.component('item-list', {
       ]
     }
   },
+  watch: {
+    '$route.query.page': function(){
+      let page = this.$route.query.page;
+      fetch(`/items/?page=${page}`)
+        .then((res) => { 
+          return res.json() 
+        })
+        .then((jsonData) => {
+          return this.items = jsonData;
+        })
+    }
+  },
   template: `
     <article class = 'container'>
       <div class="row">
@@ -35,6 +47,7 @@ const itemList = Vue.component('item-list', {
           <div class = 'row justify-content-around  content'>
             <item v-for='item in items' :creator='item.Creator' :title='item.Title' :subjects='item.Subjects' :id='item._id' v-bind:key="item._id"></item>
           </div>
+          <pagination :currPage="this.$route.query.page" :totalPages="10" :path="'/items'"></pagination>
         </div>
       </div>
     </article>

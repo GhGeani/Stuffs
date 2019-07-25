@@ -7,34 +7,40 @@ const search = Vue.component('search', {
   ],
   data: function() {
     return {
-      search: ''
+      search: '',
+      timer: null
     }
   },
 
   methods: {
     keymonitor() {
       //console.log(this.search);
-      if(this.search.trim() == '') {
-        router.push({ 
-          path: this.path,
-          query: {
-            page: this.currPage
-          }
-        })
-      } else {
-        router.push({ 
-          path: this.url,
-          query: {
-            [this.query]: this.search
-          }
-        })
-      }
+      this.timer = setTimeout(() => {
+        if(this.search.trim() == '') {
+          this.$router.push({ 
+            path: this.path,
+            query: {
+              page: this.currPage
+            }
+          })
+        } else {
+          this.$router.push({ 
+            path: this.url,
+            query: {
+              [this.query]: this.search
+            }
+          })
+        }
+      }, 2000)
+    },
+    clearT() {
+      return clearTimeout(this.timer);
     }
   },
 
   template: `
     <div class="row">
-        <input class="form-control" type="text" placeholder="Search by title.." v-on:keyup="keymonitor" v-model="search">
+        <input class="form-control" type="text" placeholder="Search by title.." @keyup="keymonitor" @keydown="clearT" v-model="search">
     </div>
   `
 })

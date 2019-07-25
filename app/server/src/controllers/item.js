@@ -12,6 +12,33 @@ class ItemController {
     }).skip(this.limit * page).limit(this.limit)
   }
 
+  getItems(page, done) {
+    this.items.aggregate([
+      {
+        $match: {}
+      }, 
+      {
+        $skip: this.limit * page
+      },
+      {
+        $limit: this.limit
+      },
+      {
+        $group:
+        {
+          _id: null,
+          $items: 
+          {
+            $push:
+            {
+              
+            }
+          }
+        }
+      }
+    ])
+  }
+
   // async getItems() {
   //   console.log('Get Items');
   //   const resp = await this.items.find({}).limit(5);

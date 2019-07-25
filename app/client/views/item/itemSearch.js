@@ -1,5 +1,19 @@
 const itemSearch = Vue.component('itemSearch', 
 {
+  mounted: function() {
+    console.log('mounted');
+    this.queryKeys = Object.keys(this.$route.query)[0];
+    this.values = Object.values(this.$route.query)[0];
+    console.log(`Query: /items/search?${this.queryKeys}=${this.values}`);
+    fetch(`/items/search?field=${this.queryKeys}&value=${this.values}`)
+    .then(response => {
+      return response.json();
+    })
+    .then(response => {
+      console.log(response);
+      return this.items = response;
+    })
+  },
   data: function() {
     return {
       items: [],
@@ -11,15 +25,14 @@ const itemSearch = Vue.component('itemSearch',
     '$route.query': function() {
       this.queryKeys = Object.keys(this.$route.query)[0];
       this.values = Object.values(this.$route.query)[0];
-      console.log(`Query: /items/search?${this.queryKeys}=${this.values}`);
       fetch(`/items/search?field=${this.queryKeys}&value=${this.values}`)
-      .then(response => {
-        return response.json();
-      })
-      .then(response => {
-        console.log(response);
-        return this.items = response;
-      })
+        .then(response => {
+          return response.json();
+        })
+        .then(response => {
+          console.log(response);
+          return this.items = response;
+        })
     }
   },
   template: `

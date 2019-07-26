@@ -3,7 +3,8 @@ const search = Vue.component('search', {
     'path',
     'currPage',
     'query',
-    'url'
+    'url',
+    'placeholder'
   ],
   data: function() {
     return {
@@ -40,7 +41,7 @@ const search = Vue.component('search', {
 
   template: `
     <div class="row">
-        <input class="form-control" type="text" placeholder="Search by title.." @keyup="keymonitor" @keydown="clearT" v-model="search">
+        <input class="form-control" type="text" :placeholder="placeholder" @keyup="keymonitor" @keydown="clearT" v-model="search">
     </div>
   `
 })

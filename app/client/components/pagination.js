@@ -4,12 +4,7 @@ Vue.component('pagination',
     this.page = this.currPage;
     if(this.page == 1) {
       this.canGetMoreLeft = false;
-    } else {
-      if(this.page > this.totalPages + 1) {
-        this.canGetMoreRight = false;
-      }
     }
-  
   },
   props: [
     'currPage',

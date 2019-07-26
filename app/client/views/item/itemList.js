@@ -14,14 +14,16 @@ const itemList = Vue.component('item-list', {
         return res.json() 
       })
       .then((jsonData) => {
-        return this.items = jsonData;
+        console.log(jsonData)
+        this.noOfElem = jsonData.count;
+        return this.items = jsonData.results;
       })
   },
   data: function() {
     return {
-      items: [
-
-      ]
+      items: [],
+      noOfElem: 0,
+      elemPerPage: 20
     }
   },
   watch: {
@@ -32,7 +34,7 @@ const itemList = Vue.component('item-list', {
           return res.json() 
         })
         .then((jsonData) => {
-          return this.items = jsonData;
+          return this.items = jsonData.results;
         })
     }
   },
@@ -43,11 +45,11 @@ const itemList = Vue.component('item-list', {
           <filter-comp ></filter-comp>
         </div> -->
         <div class="col">
-          <search :path="'/items'" :currPage="this.$route.query.page" :query="'Title'" :url="'/items/search'"></search>
+          <search :path="'/items'" :currPage="this.$route.query.page" :query="'Title'" :url="'/items/search'" :placeholder="'Search by title'"></search>
           <div class = 'row justify-content-around  content'>
             <item v-for='item in items' :creator='item.Creator' :title='item.Title' :subjects='item.Subjects' :id='item._id' v-bind:key="item._id"></item>
           </div>
-          <pagination :currPage="this.$route.query.page" :totalPages="10" :path="'/items'"></pagination>
+          <pagination :currPage="this.$route.query.page" :totalPages="Math.ceil(noOfElem/elemPerPage)" :path="'/items'"></pagination>
         </div>
       </div>
     </article>

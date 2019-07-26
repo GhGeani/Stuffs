@@ -1,7 +1,13 @@
 const itemSearch = Vue.component('itemSearch', 
 {
   mounted: function() {
-    console.log('mounted');
+    this.$on('item:remove', function(id) {
+      let index = this.items.findIndex((item) => {
+        return item._id === id;
+      })
+      this.items.splice(index, 1);
+
+    })
     this.queryKeys = Object.keys(this.$route.query)[0];
     this.values = Object.values(this.$route.query)[0];
     console.log(`Query: /items/search?${this.queryKeys}=${this.values}`);

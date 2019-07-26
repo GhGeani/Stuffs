@@ -4,39 +4,43 @@ class ItemController {
     this.limit = 20;
   }
 
-  getItems(page, done) {
-    console.log('Get Items - page=' + page);
-    this.items.find({}, (err, result) => {
-      if (err) return done(err);
-      return done(null, result)
-    }).skip(this.limit * page).limit(this.limit)
-  }
-
-  getItems(page, done) {
+ /*  getItems(page, done) {
     this.items.aggregate([
       {
-        $match: {}
-      }, 
-      {
-        $skip: this.limit * page
-      },
-      {
-        $limit: this.limit
-      },
-      {
-        $group:
-        {
-          _id: null,
-          $items: 
-          {
-            $push:
-            {
-              
+        $facet: {
+            count: [
+             {
+              $count: "total"
+             }
+            ],
+            data: [
+                {$skip: this.limit * page},
+                {$limit: this.limit}  
+                ]
             }
-          }
+        },
+        {
+          $project: 
+            {
+              noOfElem: { $arrayElemAt: [ "$count.total", 0 ] },
+              items: "$data"
+            }
         }
-      }
-    ])
+    ]).exec(done)
+  } */
+
+  getItems(page, done) {
+
+    this.items.find({}, (err, results) =>{
+      if(err) return done(err);
+      this.items.countDocuments({}, (err, count) =>{
+        if(err) return done(err);
+        return done(null, { count, results })
+      })
+    })
+   
+    .skip(this.limit * page)
+    .limit(this.limit)
   }
 
   // async getItems() {

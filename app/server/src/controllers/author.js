@@ -5,22 +5,54 @@ class AuthorController {
   }
 
   getAll(page, done){
-    //console.log('Get authors');
-    this.authors.aggregate([
-     {
-       $group: 
-       {
-         _id: "$Creator"
-       }
-     },
-     {
-       $skip: this.limit * page
-     },
-     {
-       $limit: this.limit
-     }   
-    ])
-    .exec(done);
+    this.authors.aggregate(
+      [
+        {
+          $facet: 
+          {
+            count: 
+            [
+              {
+                $group:
+                {
+                  _id: "$Creator"
+                }
+              },
+              {
+                $group:
+                {
+                  _id: null,
+                  count: { $sum: 1 }
+                }
+              }
+            ],
+            data:
+            [
+              {
+                $group: 
+                {
+                _id: "$Creator",
+                }
+              },
+              {
+                $skip: this.limit * page
+              },
+              {
+                $limit: this.limit
+              }
+            ]
+          }
+        },
+        {
+          $project:
+          {
+            noOfElem: {$arrayElemAt: ["$count.count", 0]},
+            items: "$data"
+          }
+        }
+      ]
+    )
+    .exec(done)
   }
 
   getOne(name, done){
